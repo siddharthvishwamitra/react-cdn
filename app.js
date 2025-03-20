@@ -3,10 +3,7 @@ import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './template/header';
 import Footer from './template/footer';
-import Home from './pages/home';
-import About from './pages/about';
-import Contact from './pages/contact';
-import Siddharth from './pages/siddharth';
+import routes from './links';
 import NotFound from './notfound';
 
 const App = () => (
@@ -14,10 +11,9 @@ const App = () => (
     <Header />
     <main>
       <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/siddharth" component={Siddharth} />
+        {routes.map(({ path, component, exact }, index) => (
+          <Route key={index} path={path} exact={exact} component={component} />
+        ))}
         <Route component={NotFound} />
       </Switch>
     </main>
